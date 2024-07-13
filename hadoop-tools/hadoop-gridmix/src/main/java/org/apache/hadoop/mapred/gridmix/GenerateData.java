@@ -195,7 +195,7 @@ class GenerateData extends GridmixJob {
         try {
           FileInputFormat.addInputPath(job, new Path("ignored"));
         } catch (IOException e) {
-          LOG.error("Error while adding input path ", e);
+          LOG.error("Error while adding input path {}", "ignored", e);
         }
       }
     });
