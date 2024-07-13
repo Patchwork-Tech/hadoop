@@ -202,11 +202,11 @@ public class Gridmix extends Configured implements Tool {
         LOG.info("Changing the permissions for inputPath {}", inputDir);
         shell.run(new String[] {"-chmod","-R","777", inputDir.toString()});
       } catch (Exception e) {
-        LOG.error("Couldnt change the file permissions " , e);
+        LOG.error("Couldn't change file permissions of {} to '777'.", inputDir, e);
         throw new IOException(e);
       }
 
-      LOG.info("Input data generation successful.");
+      LOG.info("Input data generation successful. Generated {} bytes.", genbytes);
     }
 
     return 0;
@@ -295,7 +295,7 @@ public class Gridmix extends Configured implements Tool {
     try {
       Path inputDir = getGridmixInputDataPath(ioPath);
       GridmixJobSubmissionPolicy policy = getJobSubmissionPolicy(conf);
-      LOG.info(" Submission policy is " + policy.name());
+      LOG.info("Submission policy is {}.", policy.name());
       statistics = new Statistics(conf, policy.getPollingInterval(), startFlag);
       monitor = createJobMonitor(statistics, conf);
       int noOfSubmitterThreads = 
@@ -327,7 +327,7 @@ public class Gridmix extends Configured implements Tool {
       monitor.start();
       submitter.start();
     }catch(Exception e) {
-      LOG.error(" Exception at start " ,e);
+      LOG.error("Error encountered while attempting to start threads", e);
       throw new IOException(e);
     }
    }
@@ -388,7 +388,7 @@ public class Gridmix extends Configured implements Tool {
   private int runJob(Configuration conf, String[] argv)
     throws IOException, InterruptedException {
     if (argv.length < 2) {
-      LOG.error("Too few arguments to Gridmix.\n");
+      LOG.error("Too few arguments to Gridmix. Received {} but expected at least 2.", argv.length);
       printUsage(System.err);
       return ARGS_ERROR;
     }
@@ -405,8 +405,7 @@ public class Gridmix extends Configured implements Tool {
         if ("-generate".equals(argv[i])) {
           genbytes = StringUtils.TraditionalBinaryPrefix.string2long(argv[++i]);
           if (genbytes <= 0) {
-            LOG.error("size of input data to be generated specified using "
-                      + "-generate option should be nonnegative.\n");
+            LOG.error("Size of input data to be generated specified using -generate option should be nonnegative. Actual value: {}.", genbytes);
             return ARGS_ERROR;
           }
         } else if ("-users".equals(argv[i])) {
@@ -425,8 +424,7 @@ public class Gridmix extends Configured implements Tool {
           }
         } else {
           LOG.error(userResolver.getClass()
-              + " needs target user list. Use -users option.\n");
-          printUsage(System.err);
+          LOG.error("User resource '{}' provided to {} needs target user list. Use -users option.\n", userRsrc, userResolver.getClass());
           return ARGS_ERROR;
         }
       } else if (userRsrc != null) {
@@ -438,7 +436,7 @@ public class Gridmix extends Configured implements Tool {
     } catch (Exception e) {
       LOG.error(e.toString() + "\n");
       if (LOG.isDebugEnabled()) {
-        e.printStackTrace();
+      LOG.error("Error during Gridmix job setup. Exception: {}. Attempted action: {}, Arguments: {}", e.getClass().getSimpleName(), e.getMessage(), Arrays.toString(argv), e);
       }
 
       printUsage(System.err);
@@ -458,7 +456,7 @@ public class Gridmix extends Configured implements Tool {
       if (!succeeded) {
         LOG.error("Failed creation of <ioPath> directory " + ioPath + "\n");
         return STARTUP_FAILED_ERROR;
-      }
+      }LOG.error("Failed creation of <ioPath> directory " + ioPath + "\n", e);
     }
 
     return start(conf, traceIn, ioPath, genbytes, userResolver);
@@ -529,7 +527,7 @@ public class Gridmix extends Configured implements Tool {
       } catch (Throwable e) {
         LOG.error("Startup failed. " + e.toString() + "\n");
         LOG.debug("Startup failed", e);
-        if (factory != null) factory.abort(); // abort pipeline
+        LOG.error("Startup failed.", e);ne
         exitCode = STARTUP_FAILED_ERROR;
       } finally {
         // signal for factory to start; sets start time
@@ -650,7 +648,7 @@ public class Gridmix extends Configured implements Tool {
     public void run() {
       LOG.info("Exiting...");
       try {
-        killComponent(factory, FAC_SLEEP);   // read no more tasks
+      LOG.info("Exiting main method..."); FAC_SLEEP);   // read no more tasks
         killComponent(submitter, SUB_SLEEP); // submit no more tasks
         killComponent(monitor, MON_SLEEP);   // process remaining jobs here
         killComponent(statistics,MON_SLEEP);
@@ -664,7 +662,7 @@ public class Gridmix extends Configured implements Tool {
         }
         LOG.info("Killing running jobs...");
         for (JobStats stats : remainingJobs) {
-          Job job = stats.getJob();
+        LOG.info("Killing running jobs: {}", remainingJobs.stream().map(s -> s.getJob().getJobID().toString()).collect(Collectors.joining(", ")));
           try {
             if (!job.isComplete()) {
               job.killJob();
@@ -681,10 +679,10 @@ public class Gridmix extends Configured implements Tool {
           } catch (Exception e) {
             LOG.error("Unexpected exception", e);
           }
-        }
+        }LOG.error("Unexpected exception while killing running jobs", e);
         LOG.info("Done.");
       }
-    }
+    }LOG.info("Finished killing remaining jobs.");
 
   }
 
