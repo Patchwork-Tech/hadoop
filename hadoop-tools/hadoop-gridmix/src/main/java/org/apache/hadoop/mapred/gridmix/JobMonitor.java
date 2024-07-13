@@ -97,7 +97,7 @@ class JobMonitor implements Gridmix.Component<JobStats> {
    */
   public void submissionFailed(JobStats job) {
     String jobID = job.getJob().getConfiguration().get(Gridmix.ORIGINAL_JOB_ID);
-    LOG.info("Job submission failed notification for job " + jobID);
+    LOG.info("Job submission failed notification for job {}. Reason: {}", jobID, job.getStatus().getFailureInfo() != null ? job.getStatus().getFailureInfo().getMessage() : "Unknown");
     synchronized (statistics) {
       this.statistics.add(job);
     }
@@ -107,14 +107,14 @@ class JobMonitor implements Gridmix.Component<JobStats> {
    * Temporary hook for recording job success.
    */
   protected void onSuccess(Job job) {
-    LOG.info(job.getJobName() + " (" + job.getJobID() + ")" + " success");
+    LOG.info("{0} ({1}) success", job.getJobName(), job.getJobID());
   }
 
   /**
    * Temporary hook for recording job failure.
    */
   protected void onFailure(Job job) {
-    LOG.info(job.getJobName() + " (" + job.getJobID() + ")" + " failure");
+    LOG.info("Job {} ({}) failed: {}", job.getJobName(), job.getJobID(), job.getError());
   }
 
   /**
@@ -206,7 +206,7 @@ class JobMonitor implements Gridmix.Component<JobStats> {
                 synchronized (mJobs) {
                   if (!mJobs.offer(jobStats)) {
                     LOG.error("Lost job " + (null == job.getJobName()
-                         ? "<unknown>" : job.getJobName())); // should never
+                         ? "<unknown>" : job.getJobName()) + " due to job queue being full");// should never
                                                              // happen
                   }
                 }
