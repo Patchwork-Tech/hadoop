@@ -282,11 +282,11 @@ public class WasbRemoteCallHelper {
         return;
       }
     } catch (InterruptedIOException e) {
-      LOG.warn(e.getMessage(), e);
+      LOG.warn("Interrupted while waiting to retry connection", e);
       Thread.currentThread().interrupt();
       return;
     } catch (Exception e) {
-      LOG.warn("Original exception is ", ioe);
+      LOG.warn("Original exception {} while making remote call to {} during retry attempt.", ioe.getMessage(), url, ioe);
       throw new WasbRemoteCallException(e.getMessage(), e);
     }
     LOG.debug("Not retrying anymore, already retried the urls {} time(s)",
