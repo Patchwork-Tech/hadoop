@@ -167,7 +167,7 @@ public class AliyunOSSInputStream extends FSInputStream {
         this.buffer = readBuffer.getBuffer();
       }
     } catch (InterruptedException e) {
-      LOG.warn("interrupted when wait a read buffer");
+      LOG.warn("Interrupted while waiting for a read buffer", e);
     } finally {
       readBuffer.unlock();
     }
