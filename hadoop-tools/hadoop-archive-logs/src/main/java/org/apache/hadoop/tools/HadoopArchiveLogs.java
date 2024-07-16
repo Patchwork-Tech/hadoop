@@ -165,8 +165,7 @@ public class HadoopArchiveLogs implements Tool {
         String suffix = fileController.getRemoteRootLogDirSuffix();
         Path workingDir = new Path(remoteRootLogDir, "archive-logs-work");
         if (verbose) {
-          LOG.info("LogAggregationFileController:" + fileController
-              .getClass().getName());
+          LOG.info("LogAggregationFileController: {}", fileController.getClass().getName());
           LOG.info("Remote Log Dir Root: " + remoteRootLogDir);
           LOG.info("Log Suffix: " + suffix);
           LOG.info("Working Dir: " + workingDir);
