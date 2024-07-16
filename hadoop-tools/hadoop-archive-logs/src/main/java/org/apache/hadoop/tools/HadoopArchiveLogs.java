@@ -304,8 +304,7 @@ public class HadoopArchiveLogs implements Tool {
   boolean prepareWorkingDir(FileSystem fs, Path workingDir) throws IOException {
     if (fs.exists(workingDir)) {
       if (force) {
-        LOG.info("Existing Working Dir detected: -" + FORCE_OPTION +
-            " specified -> recreating Working Dir");
+        LOG.info("Existing Working Dir detected: {} -" + FORCE_OPTION + " specified -> recreating Working Dir", workingDir);
         fs.delete(workingDir, true);
       } else {
         LOG.info("Existing Working Dir detected: -" + FORCE_OPTION +
