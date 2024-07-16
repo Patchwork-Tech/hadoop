@@ -182,7 +182,14 @@ public class HadoopArchiveLogs implements Tool {
       }
       checkMaxEligible();
       if (workingDirs.isEmpty() || eligibleApplications.isEmpty()) {
-        LOG.info("No eligible applications to process");
+        StringBuilder eligibilityCriteria = new StringBuilder();
+if (workingDirs.isEmpty()) {
+  eligibilityCriteria.append("No working directories found. ");
+}
+if (eligibleApplications.isEmpty()) {
+  eligibilityCriteria.append("No eligible applications found. ");
+}
+LOG.info("No eligible applications to process. Reasons: " + eligibilityCriteria.toString());
         return 0;
       }
       for (Path workingDir : workingDirs) {
