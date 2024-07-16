@@ -308,8 +308,7 @@ public class HadoopArchiveLogs implements Tool {
             " specified -> recreating Working Dir");
         fs.delete(workingDir, true);
       } else {
-        LOG.info("Existing Working Dir detected: -" + FORCE_OPTION +
-            " not specified -> exiting");
+        LOG.info("Existing Working Dir detected: {} -" + FORCE_OPTION + " not specified -> exiting", workingDir);
         return false;
       }
     }
