@@ -197,7 +197,7 @@ public class HadoopArchiveLogs implements Tool {
       for (AppInfo app : eligibleApplications) {
         sb.append("\n\t").append(app.getAppId());
       }
-      LOG.info(sb.toString());
+      LOG.info("Will process the following applications: \n{}", sb.toString());
       File localScript = File.createTempFile("hadoop-archive-logs-", ".sh");
       generateScript(localScript);
 
