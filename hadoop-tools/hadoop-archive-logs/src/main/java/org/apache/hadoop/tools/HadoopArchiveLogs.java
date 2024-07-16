@@ -266,9 +266,7 @@ public class HadoopArchiveLogs implements Tool {
         maxEligible = Integer.parseInt(
             commandLine.getOptionValue(MAX_ELIGIBLE_APPS_OPTION));
         if (maxEligible == 0) {
-          LOG.info("Setting " + MAX_ELIGIBLE_APPS_OPTION + " to 0 accomplishes "
-              + "nothing. Please either set it to a negative value "
-              + "(default, all) or a more reasonable value.");
+          LOG.info("Setting {} to 0 has no effect. Use a negative value for default or a value greater than 0.", MAX_ELIGIBLE_APPS_OPTION);
           System.exit(0);
         }
       }
