@@ -757,7 +757,7 @@ public class AliyunOSSFileSystem extends FileSystem {
     try {
       copyFileContext.awaitAllFinish(copiesToFinish);
     } catch (InterruptedException e) {
-      LOG.warn("interrupted when wait copies to finish");
+      LOG.warn("interrupted when wait copies to finish from {} to {}", srcPath, dstPath, e);
     } finally {
       copyFileContext.unlock();
     }
