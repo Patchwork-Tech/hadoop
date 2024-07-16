@@ -534,8 +534,7 @@ public class AliyunOSSFileSystemStore {
       statistics.incrementReadOps(1);
       return in;
     } catch (OSSException | ClientException e) {
-      LOG.error("Exception thrown when store retrieves key: "
-              + key + ", exception: " + e);
+      LOG.error("Exception thrown when store retrieves key: " + key + ", byteStart: " + byteStart + ", byteEnd: " + byteEnd + ", exception: " + e);
       return null;
     }
   }
