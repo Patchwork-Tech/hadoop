@@ -256,8 +256,7 @@ final public class AliyunOSSUtils {
           property, partSize);
       partSize = MULTIPART_MIN_SIZE;
     } else if (partSize > Integer.MAX_VALUE) {
-      LOG.warn("oss: {} capped to ~2.14GB(maximum allowed size with " +
-          "current output mechanism)", MULTIPART_UPLOAD_PART_SIZE_KEY);
+      LOG.warn("oss: {} capped to {}GB (maximum allowed size with current output mechanism)", MULTIPART_UPLOAD_PART_SIZE_KEY, Integer.MAX_VALUE / (1024.0 * 1024.0 * 1024.0));
       partSize = Integer.MAX_VALUE;
     }
     return partSize;
