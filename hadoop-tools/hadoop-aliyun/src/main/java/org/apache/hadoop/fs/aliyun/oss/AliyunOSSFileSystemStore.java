@@ -121,7 +121,7 @@ public class AliyunOSSFileSystemStore {
         clientConf.setProxyPort(proxyPort);
       } else {
         if (secureConnections) {
-          LOG.warn("Proxy host set without port. Using HTTPS default 443");
+          LOG.warn("Proxy host {} set without port. Using HTTPS default 443", proxyHost);
           clientConf.setProxyPort(443);
         } else {
           LOG.warn("Proxy host set without port. Using HTTP default 80");
