@@ -153,7 +153,7 @@ public class HadoopArchiveLogsRunner implements Tool {
     LOG.info(sb.toString());
     int exitCode = hadoopArchives.run(haArgs);
     if (exitCode != 0) {
-      LOG.warn("Failed to create archives for " + appId);
+      LOG.warn("Failed to create archives for " + appId + ". Hadoop archive exit code: " + exitCode);
       return -1;
     }
 
