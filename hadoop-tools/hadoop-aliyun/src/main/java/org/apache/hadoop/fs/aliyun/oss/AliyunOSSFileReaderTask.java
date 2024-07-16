@@ -90,7 +90,7 @@ public class AliyunOSSFileReaderTask implements Runnable {
             }
           } catch (Exception ex) {
             //FAIL
-            LOG.warn("Exception thrown when call shouldRetry, exception " + ex);
+            LOG.warn("Exception thrown when calling shouldRetry for key '{}', exception: {}", key, ex);
             break;
           }
         }
