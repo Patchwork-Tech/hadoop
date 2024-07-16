@@ -169,7 +169,7 @@ public class HadoopArchiveLogsRunner implements Tool {
         return -1;
       }
       Path harDest = new Path(remoteAppLogDir, harName);
-      LOG.info("Moving har to original location");
+      LOG.info("Moving har from {} to {}", harPath, harDest);
       fs.rename(harPath, harDest);
       LOG.info("Deleting original logs");
       for (FileStatus original : fs.listStatus(new Path(remoteAppLogDir),
