@@ -149,7 +149,7 @@ public class HadoopArchiveLogs implements Tool {
     List<LogAggregationFileController> fileControllers = factory
         .getConfiguredLogAggregationFileControllerList();
     if (fileControllers == null || fileControllers.isEmpty()) {
-      LOG.info("Can not find any valid fileControllers.");
+      LOG.info("Can not find any valid fileControllers. Configured file controllers: {}", YarnConfiguration.LOG_AGGREGATION_FILE_FORMATS);
       if (verbose) {
         LOG.info("The configurated fileControllers:"
             + YarnConfiguration.LOG_AGGREGATION_FILE_FORMATS);
