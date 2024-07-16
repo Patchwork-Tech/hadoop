@@ -238,7 +238,10 @@ public class AliyunOSSFileSystem extends FileSystem {
    */
   private boolean rejectRootDirectoryDelete(boolean isEmptyDir,
       boolean recursive) throws IOException {
-    LOG.info("oss delete the {} root directory of {}", bucket, recursive);
+    if (isEmptyDir) {
+      LOG.info("oss delete the {} root directory of {} allowed as bucket is empty", bucket, recursive);
+      return true;
+    }
     if (isEmptyDir) {
       return true;
     }
