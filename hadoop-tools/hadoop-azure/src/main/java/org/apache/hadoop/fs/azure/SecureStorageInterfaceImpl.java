@@ -250,7 +250,7 @@ public class SecureStorageInterfaceImpl extends StorageInterface {
         String errorMsg = "Encountered SASKeyGeneration exception while "
             + "generating SAS Key for relativePath : " + relativePath
             + " inside container : " + getName()  + " Storage account : " + storageAccount;
-        LOG.error(errorMsg);
+        LOG.error(errorMsg, sasEx);
         throw new StorageException(SAS_ERROR_CODE, errorMsg, sasEx);
       }
     }
