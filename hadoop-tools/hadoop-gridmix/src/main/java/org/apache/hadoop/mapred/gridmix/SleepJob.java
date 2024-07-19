@@ -264,7 +264,7 @@ public class SleepJob extends GridmixJob {
         @Override
         public void close() throws IOException {
           final String msg = "Slept for " + duration;
-          LOG.info(msg);
+          LOG.info("Slept for {} ms (duration {}), with sleep interval {} ms (RINTERVAL {} ms)", slept, duration, sleepInterval, RINTERVAL);
         }
 
         public void initialize(InputSplit split, TaskAttemptContext ctxt) {
