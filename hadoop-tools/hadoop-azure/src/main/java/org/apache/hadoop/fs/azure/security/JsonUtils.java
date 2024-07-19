@@ -43,8 +43,7 @@ public final class JsonUtils {
       LOG.debug("JSON Parsing exception: {} while parsing {}", e.getMessage(),
           jsonString);
       if (jsonString.toLowerCase(Locale.ENGLISH).contains("server error")) {
-        LOG.error(
-            "Internal Server Error was encountered while making a request");
+        LOG.error("Internal Server Error was encountered while making a request. Exception: {}. JSON: {}", e.getMessage(), jsonString);
       }
       throw new IOException("JSON Parsing Error: " + e.getMessage(), e);
     }
