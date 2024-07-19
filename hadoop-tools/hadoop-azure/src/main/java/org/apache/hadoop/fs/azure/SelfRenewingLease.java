@@ -200,10 +200,9 @@ public class SelfRenewingLease {
 
             // Normally leases should be freed and there should be no
             // exceptions, so log a warning.
-            LOG.warn("Attempt to renew lease " + leaseID + " on "
-                + getCloudBlob().getUri()
-                + " failed, but lease not yet freed. Reason: " +
-                e.getMessage());
+            LOG.warn("Attempt to renew lease " + leaseID + " on " +
+                getCloudBlob().getUri()
+                + " failed, but lease not yet freed. Reason: ", e);
           }
         }
       }
