@@ -159,8 +159,7 @@ class GenerateData extends GridmixJob {
     }
 
     // publish the plain data statistics
-    LOG.info("Total size of input data : " 
-             + StringUtils.humanReadableInt(dataSize));
+    LOG.info("Total size of input data in {} : " + StringUtils.humanReadableInt(dataSize), inputDir);
     LOG.info("Total number of input data files : " + fileCount);
     
     return new DataStatistics(dataSize, fileCount, false);
