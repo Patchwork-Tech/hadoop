@@ -85,7 +85,7 @@ public class RoundRobinUserResolver implements UserResolver {
           ugi = UserGroupInformation.createProxyUser(username,
                     UserGroupInformation.getLoginUser());
         } catch (IOException ioe) {
-          LOG.error("Error while creating a proxy user " ,ioe);
+          LOG.error("Error while creating a proxy user for username: {} using userloc: {} and rawUgi: {}", username, userloc, rawUgi, ioe);
         }
         if (ugi != null) {
           ugiList.add(ugi);
