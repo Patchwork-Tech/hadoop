@@ -50,7 +50,7 @@ public class SimpleKeyProvider implements KeyProvider {
         key = new String(keyChars);
       }
     } catch(IOException ioe) {
-      LOG.warn("Unable to get key from credential providers.", ioe);
+      LOG.warn("Unable to get key for account {} from credential providers.", accountName, ioe);
     }
     return key;
   }
