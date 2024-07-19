@@ -527,7 +527,7 @@ public class Gridmix extends Configured implements Tool {
         factory.start();
         statistics.start();
       } catch (Throwable e) {
-        LOG.error("Startup failed. " + e.toString() + "\n");
+        LOG.error("Startup failed. scratchDir={}, traceIn={}, ioPath={}, userResolver={}.", scratchDir, traceIn, ioPath, userResolver, e);
         LOG.debug("Startup failed", e);
         if (factory != null) factory.abort(); // abort pipeline
         exitCode = STARTUP_FAILED_ERROR;
