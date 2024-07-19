@@ -224,7 +224,7 @@ public class WasbRemoteCallHelper {
           String message =
               "Encountered error while making remote call to " + String
                   .join(",", urls) + " retried " + retry + " time(s).";
-          LOG.error(message, ioex);
+          LOG.error("Encountered error while making remote call to {}. Retried {} time(s). Failed URL: {}. Method: {}. Query Parameters: {}.", String.join(",", urls), retry, (httpRequest != null) ? httpRequest.getURI().toString() : urls[index], httpMethod, sanitizeQueryParams(queryParams), ioex);
           throw new WasbRemoteCallException(message, ioex);
         }
       }
