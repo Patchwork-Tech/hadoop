@@ -206,7 +206,7 @@ public class Gridmix extends Configured implements Tool {
         throw new IOException(e);
       }
 
-      LOG.info("Input data generation successful.");
+      LOG.info("Input data generation successful. Generated {} bytes of data in {}.", genbytes, inputDir);
     }
 
     return 0;
