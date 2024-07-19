@@ -221,7 +221,7 @@ class JobMonitor implements Gridmix.Component<JobStats> {
                 Thread.currentThread().interrupt();
               } else {
                 LOG.warn("Lost job " + (null == job.getJobName()
-                     ? "<unknown>" : job.getJobName()), e);
+                     ? "<unknown>" : job.getJobName()) + ", jobStats: " + jobStats, e);
                 synchronized (statistics) {
                   statistics.add(jobStats);
                 }
