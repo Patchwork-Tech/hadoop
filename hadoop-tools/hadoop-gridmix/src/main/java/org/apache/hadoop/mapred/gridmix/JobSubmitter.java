@@ -99,7 +99,7 @@ class JobSubmitter implements Gridmix.Component<GridmixJob> {
           return;
         } catch (Exception e) {
           LOG.warn("Failed to submit " + job.getJob().getJobName() + " as " 
-                   + job.getUgi(), e);
+                   + job.getUgi() + ", stats=" + stats, e);
           monitor.submissionFailed(stats);
           return;
         }
