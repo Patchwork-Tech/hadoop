@@ -166,8 +166,7 @@ public class Statistics implements Component<Statistics.JobStats> {
     
     // stat cannot be null
     if (stat == null) {
-      LOG.error("[Statistics] Missing entry for job " 
-                + job.getJob().getJobID());
+      LOG.error(" [Statistics] Missing entry for job " + job.getJob().getJobID() + " with stat: " + stat + ". stat object contains: numMaps=" + stat.getNoOfMaps() + ", numReduces=" + stat.getNoOfReds());
       return;
     }
     
