@@ -132,7 +132,7 @@ public class SecureStorageInterfaceImpl extends StorageInterface {
   public void createBlobClient(URI baseUri, StorageCredentials credentials) {
     String errorMsg = "createBlobClient is an invalid operation in SAS "
         + "Key Mode";
-    LOG.error(errorMsg);
+    LOG.error("createBlobClient is an invalid operation in SAS Key Mode for baseUri: {}", baseUri);
     throw new UnsupportedOperationException(errorMsg);
   }
 
