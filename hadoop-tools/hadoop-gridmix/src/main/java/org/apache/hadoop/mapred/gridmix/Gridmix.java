@@ -405,8 +405,7 @@ public class Gridmix extends Configured implements Tool {
         if ("-generate".equals(argv[i])) {
           genbytes = StringUtils.TraditionalBinaryPrefix.string2long(argv[++i]);
           if (genbytes <= 0) {
-            LOG.error("size of input data to be generated specified using "
-                      + "-generate option should be nonnegative.\n");
+            LOG.error("size of input data to be generated, {}, specified using -generate option should be nonnegative.\n", genbytes);
             return ARGS_ERROR;
           }
         } else if ("-users".equals(argv[i])) {
