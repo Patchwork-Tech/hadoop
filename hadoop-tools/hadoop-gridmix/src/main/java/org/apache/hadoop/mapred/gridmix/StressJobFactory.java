@@ -426,7 +426,7 @@ public class StressJobFactory extends JobFactory<Statistics.ClusterStats> {
             break;
           }
         } else {
-          LOG.warn("Blacklisting empty job: " + id);
+          LOG.warn("Blacklisting empty job: " + id + " noOfMaps: " + noOfMaps + " noOfReduces: " + noOfReduces);
           blacklistedJobs.add(id);
         }
       }
