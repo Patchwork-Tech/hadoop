@@ -641,7 +641,7 @@ public class Gridmix extends Configured implements Tool {
       try {
         component.join(maxwait);
       } catch (InterruptedException e) {
-        LOG.warn("Interrupted waiting for " + component);
+        LOG.warn("Interrupted waiting for {} after {} ms", component, maxwait);
       }
 
     }
