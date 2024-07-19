@@ -193,8 +193,7 @@ public class Gridmix extends Configured implements Tool {
       CompressionEmulationUtil.setupDataGeneratorConfig(conf);
     
       final GenerateData genData = new GenerateData(conf, inputDir, genbytes);
-      LOG.info("Generating {} of test data...",
-          StringUtils.TraditionalBinaryPrefix.long2String(genbytes, "", 1));
+      LOG.info("Generating {} of test data in {} ...", StringUtils.TraditionalBinaryPrefix.long2String(genbytes, "", 1), inputDir);
       launchGridmixJob(genData);
     
       FsShell shell = new FsShell(conf);
