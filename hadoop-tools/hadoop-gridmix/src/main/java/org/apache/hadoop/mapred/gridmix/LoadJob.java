@@ -470,7 +470,7 @@ class LoadJob extends GridmixJob {
         }
       }
       if (0 == outRecords && inRecords > 0) {
-        LOG.info("Spec output bytes w/o records. Using input record count");
+              LOG.info("Spec output bytes w/o records: {}. Using input record count", outBytes);
         outRecords = inRecords;
       }
       
