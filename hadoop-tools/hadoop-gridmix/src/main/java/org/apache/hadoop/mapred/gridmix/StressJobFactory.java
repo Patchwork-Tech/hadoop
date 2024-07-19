@@ -272,7 +272,7 @@ public class StressJobFactory extends JobFactory<Statistics.ClusterStats> {
         (int) (maxJobTrackerRatio * numTrackers) - item.getNumRunningJob();
       loadStatus.updateJobLoad(jobLoad);
     } catch (Exception e) {
-      LOG.error("Couldn't get the new Status",e);
+      LOG.error("Couldn't get the new Status. Details: maxMapTasks={}, maxReduceTasks={}, taskTrackers={}", clusterStatus.getMaxMapTasks(), clusterStatus.getMaxReduceTasks(), clusterStatus.getTaskTrackers(), e);
     }
   }
 
