@@ -93,7 +93,7 @@ import java.util.concurrent.TimeUnit;
             }
             final long current = job.getSubmissionTime();
             if (current < last) {
-              LOG.warn("Job " + job.getJobID() + " out of order");
+              LOG.warn("Job " + job.getJobID() + " out of order (current: " + current + ", last: " + last + ", first: " + first + ")");
               continue;
             }
             last = current;
