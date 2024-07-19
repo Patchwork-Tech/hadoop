@@ -456,7 +456,7 @@ public class Gridmix extends Configured implements Tool {
       // No need to emit this exception message
     } finally {
       if (!succeeded) {
-        LOG.error("Failed creation of <ioPath> directory " + ioPath + "\n");
+        LOG.error("Failed creation of <ioPath> directory {} with configuration: {} ", ioPath, conf, e);
         return STARTUP_FAILED_ERROR;
       }
     }
