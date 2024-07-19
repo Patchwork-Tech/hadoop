@@ -540,7 +540,7 @@ public class Gridmix extends Configured implements Tool {
         factory.join(Long.MAX_VALUE);
         final Throwable badTraceException = factory.error();
         if (null != badTraceException) {
-          LOG.error("Error in trace", badTraceException);
+          LOG.error("Error in trace {}", traceIn, badTraceException);
           throw new IOException("Error in trace", badTraceException);
         }
         // wait for pending tasks to be submitted
