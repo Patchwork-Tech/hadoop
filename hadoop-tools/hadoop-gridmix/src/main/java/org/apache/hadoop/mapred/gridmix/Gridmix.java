@@ -436,7 +436,7 @@ public class Gridmix extends Configured implements Tool {
       ioPath = new Path(argv[argv.length - 2]);
       traceIn = argv[argv.length - 1];
     } catch (Exception e) {
-      LOG.error(e.toString() + "\n");
+      LOG.error("Error encountered while running job with arguments: " + Arrays.toString(argv), e);
       if (LOG.isDebugEnabled()) {
         e.printStackTrace();
       }
