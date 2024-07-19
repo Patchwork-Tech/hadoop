@@ -286,7 +286,7 @@ public class WasbRemoteCallHelper {
       Thread.currentThread().interrupt();
       return;
     } catch (Exception e) {
-      LOG.warn("Original exception is ", ioe);
+      LOG.warn("Original exception is {}, retry policy failure exception: {}", ioe, e);
       throw new WasbRemoteCallException(e.getMessage(), e);
     }
     LOG.debug("Not retrying anymore, already retried the urls {} time(s)",
