@@ -388,7 +388,8 @@ public class Gridmix extends Configured implements Tool {
   private int runJob(Configuration conf, String[] argv)
     throws IOException, InterruptedException {
     if (argv.length < 2) {
-      LOG.error("Too few arguments to Gridmix.\n");
+      LOG.error("Too few arguments to Gridmix: {}.
+", Arrays.toString(argv));
       printUsage(System.err);
       return ARGS_ERROR;
     }
