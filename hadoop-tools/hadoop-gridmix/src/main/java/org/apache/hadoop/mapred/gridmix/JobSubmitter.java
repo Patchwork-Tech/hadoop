@@ -142,7 +142,7 @@ class JobSubmitter implements Gridmix.Component<GridmixJob> {
           }
           monitor.submissionFailed(stats);
         } catch (ClassNotFoundException e) {
-          LOG.warn("Failed to submit " + job.getJob().getJobName(), e);
+          LOG.warn("Failed to submit " + job.getJob().getJobName() + " " + stats, e);
           monitor.submissionFailed(stats);
         }
       } catch (InterruptedException e) {
