@@ -124,9 +124,7 @@ public class SerialJobFactory extends JobFactory<JobStats> {
                 try {
                   jobCompleted.await();
                 } catch (InterruptedException ie) {
-                  LOG.error(
-                    " Error in SerialJobFactory while waiting for job completion ",
-                    ie);
+                  LOG.error(" Error in SerialJobFactory while waiting for job completion for job: " + job.getName(), ie);
                   return;
                 }
                 if (LOG.isDebugEnabled()) {
