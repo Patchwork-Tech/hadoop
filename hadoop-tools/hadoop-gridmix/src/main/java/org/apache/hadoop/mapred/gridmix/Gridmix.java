@@ -202,7 +202,7 @@ public class Gridmix extends Configured implements Tool {
         LOG.info("Changing the permissions for inputPath {}", inputDir);
         shell.run(new String[] {"-chmod","-R","777", inputDir.toString()});
       } catch (Exception e) {
-        LOG.error("Couldnt change the file permissions " , e);
+        LOG.error("Couldnt change the file permissions for directory {} " , e, inputDir);
         throw new IOException(e);
       }
 
