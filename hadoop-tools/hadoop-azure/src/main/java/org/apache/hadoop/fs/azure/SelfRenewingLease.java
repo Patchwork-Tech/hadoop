@@ -133,8 +133,7 @@ public class SelfRenewingLease {
       } else {
 
         // This error is not anticipated, so re-throw it.
-        LOG.warn("Unanticipated exception when trying to free lease " + leaseID
-            + " on " +  blobWrapper.getStorageUri());
+        LOG.warn("Unanticipated exception when trying to free lease {} on {}. Exception: {}", leaseID, blobWrapper.getStorageUri(), e.getMessage());
         throw(e);
       }
     } finally {
