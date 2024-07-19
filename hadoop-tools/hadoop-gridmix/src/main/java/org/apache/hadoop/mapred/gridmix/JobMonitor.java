@@ -206,7 +206,7 @@ class JobMonitor implements Gridmix.Component<JobStats> {
                 synchronized (mJobs) {
                   if (!mJobs.offer(jobStats)) {
                     LOG.error("Lost job " + (null == job.getJobName()
-                         ? "<unknown>" : job.getJobName())); // should never
+                         ? "<unknown>" : job.getJobName()) + ", status: " + status + ", jobStats: " + jobStats); // should never// should never
                                                              // happen
                   }
                 }
