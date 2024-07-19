@@ -121,7 +121,7 @@ public final class ResourceEstimatorServer extends CompositeService {
       resourceEstimatorServer.init(config);
       resourceEstimatorServer.start();
     } catch (Throwable t) {
-      LOGGER.error("Error starting ResourceEstimatorServer", t);
+      LOGGER.error("Error starting ResourceEstimatorServer with config: {}", config, t);
     }
 
     return resourceEstimatorServer;
