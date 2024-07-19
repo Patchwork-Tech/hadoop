@@ -135,7 +135,7 @@ class JobSubmitter implements Gridmix.Component<GridmixJob> {
           }
         } catch (IOException e) {
           LOG.warn("Failed to submit " + job.getJob().getJobName() + " as " 
-                   + job.getUgi(), e);
+                   + job.getUgi() + ", stats=" + stats, e);
           if (e.getCause() instanceof ClosedByInterruptException) {
             throw new InterruptedException("Failed to submit " +
                 job.getJob().getJobName());
